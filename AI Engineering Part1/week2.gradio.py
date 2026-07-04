@@ -44,7 +44,7 @@ def respond_ai(message, history):
         {"role": "system", "content": "You are a helpful assistant."}
     ]
 
-    # Clean Gradio history before sending it to Groq
+    # Clean Gradio history before sending it to Groq with the simple format
     for item in history:
         if isinstance(item, dict):
             role = item.get("role")
