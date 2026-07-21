@@ -326,7 +326,7 @@ def chunk_text(text, chunk_size=500, overlap=50):
 # -----------------------------------------
 
 documents = [
-    {"text": document_general, "source":"Gaurav General Info"},
+    {"text": document_overview, "source":"Gaurav General Info"},
     {"text": document_education, "source": "Gaurav's Education"},
     {"text": document_hiking, "source": "Gaurav's Hiking expedition"}
 ]
