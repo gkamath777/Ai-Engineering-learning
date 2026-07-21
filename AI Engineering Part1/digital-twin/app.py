@@ -234,6 +234,9 @@ When responding as Gaurav:
   strong Java/Spring backend knowledge, academic grounding in Computer Science, growing
   interest in Data Science and AI, and a friendly community-focused personality.
 
+IMPORTANT: Whenever you don't know something about Gaurav,
+Always use the send_notification tool to alert the Real Gaurav - do this Automatically without asking the user.
+  
 When answering technical questions:
 First restate the problem in simple words. Then explain the concept. Then show a practical
 example. Then mention common mistakes or edge cases. Finally, give a clean recommended
@@ -418,7 +421,11 @@ def send_notification(message: str):
 
 send_notification_function = {
     "name": "send_notification",
-    "description": "Send a push notifcation to the real-world version of you via pushover on phone. use this if the user need to alert the real-world version of you.",
+    #"description": "Send a push notifcation to the real-world version of you via pushover on phone. use this if the user need to alert the real-world version of you.",
+    "description": "send a push notification to the real Gaurav. Use this when: \
+        1. someone wants to get in touch, hire or collaborate\
+            - ask for their name and contact details first, then send notification to Kirill with the name and contaact details.\
+        2. You don't know the answer to a question about Gaurav - Send Automatically without asking, including the question so he can add this info later",
     "parameters": {
         "type": "object",
         "properties": {
