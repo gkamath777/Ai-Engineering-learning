@@ -4,6 +4,7 @@ import gradio as gr
 from pprint import pprint
 import uuid
 import chromadb
+import re
 
 
 # -------------------------------
