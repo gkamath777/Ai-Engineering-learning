@@ -405,12 +405,15 @@ print(f"PUSHOVER_TOKEN: {pushover_token}")
 
 # Pushover API - Create send_notification function
 def send_notification(message: str):
+    if pushover_token is None or pushover_user is None:
+        return "Notificstion failed: pushover not configured"
     payload = {
         "user": pushover_user,
         "token": pushover_token,
         "message": message
     }
     requests.post(pushover_url, data=payload)
+    return f"Notification sent: {message}"
 
 
 send_notification_function = {
@@ -472,8 +475,8 @@ def handle_tool_call(tool_calls):
         # Route the tool call to the appropropriate function based on the function name
         if function_name == "send_notification":
         # Actually send the notification using the tool
-            send_notification(args["message"])
-            content =  f"Notification sent: {args['message']}"
+            content = send_notification(args["message"])
+            #content =  f"Notification sent: {args['message']}"
             #print(f" Sent notification: {args['message']}")
         elif function_name == "dice_roll":
             # Call the second function here
