@@ -571,4 +571,10 @@ def respond_ai(message, history):
 # Launch Gradio
 # -------------------------------
 
-gr.ChatInterface(fn=respond_ai).launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7861)))
+gr.ChatInterface(
+    fn=respond_ai,
+    title = "Gaurav's Digital Twin",
+    chatbot = gr.Chatbot(avatar_images=(None, "pgk.jpeg")),
+    description= "Chat with AI version of Gaurav Kamath. Ask about project, his experience and other details",
+    examples=["what's your background", "AI Engineering Experience", "Extra curricular Activities"]
+).launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7861)))
