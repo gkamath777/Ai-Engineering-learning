@@ -8,6 +8,7 @@ import re
 import json
 import requests
 import random
+from pathlib import Path
 
 
 # -------------------------------
@@ -571,10 +572,14 @@ def respond_ai(message, history):
 # Launch Gradio
 # -------------------------------
 
+
+APP_DIR = Path(__file__).resolve().parent
+AVATAR_PATH = APP_DIR / "pgk.jpeg"
+
 gr.ChatInterface(
     fn=respond_ai,
     title = "Gaurav's Digital Twin",
-    chatbot = gr.Chatbot(avatar_images=(None, "pgk.jpeg")),
+    chatbot = gr.Chatbot(avatar_images=(None, str(AVATAR_PATH))),
     description= "Chat with AI version of Gaurav Kamath. Ask about project, his experience and other details",
     examples=["what's your background", "AI Engineering Experience", "Extra curricular Activities"]
 ).launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7861)))
