@@ -440,6 +440,9 @@ System modernization
 Stakeholder communication
 
 My goal is to build AI systems that provide practical business value while meeting enterprise expectations for security, scalability, reliability, governance, and maintainability.
+Timeline:
+2009 to 2019 - Worked in bangalore, India
+20019 to until now - working USA, Sanfrancisco Bay area.
 """
 
 document_education = """
