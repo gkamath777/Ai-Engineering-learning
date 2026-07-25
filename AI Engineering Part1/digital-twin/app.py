@@ -591,7 +591,7 @@ with gr.Blocks() as demo:
         # Gaurav's Digital Twin
 
         Chat with the AI version of Gaurav Kamath.  
-        Select a topic below or ask your own question.
+        What would you like to explore?
         """
     )
 
@@ -600,16 +600,15 @@ with gr.Blocks() as demo:
         height=500
     )
 
-    message_box = gr.Textbox(
-        placeholder="Ask me anything about Gaurav...",
-        label="Your question"
-    )
+    # Hidden textbox used to submit the selected card prompt
+    card_prompt = gr.Textbox(visible=False)
 
     with gr.Row():
         with gr.Column():
             gr.Markdown(
                 """
                 ### 💼 Professional Profile
+
                 Explore my career, technical skills, and projects.
                 """
             )
@@ -622,51 +621,80 @@ with gr.Blocks() as demo:
             gr.Markdown(
                 """
                 ### 🎓 Education & AI Journey
+
                 Learn about my education, AI development, and career goals.
                 """
             )
-            education_btn = gr.Button("Explore Learning Journey")
+            education_btn = gr.Button(
+                "Explore Learning Journey"
+            )
 
         with gr.Column():
             gr.Markdown(
                 """
-                ### 🏏 Personal Interests
+                ### 🏏 Beyond Work
+
                 Discover my interests, sports, community activities, and personality.
                 """
             )
-            interests_btn = gr.Button("Explore Personal Interests")
+            interests_btn = gr.Button(
+                "Explore Personal Interests"
+            )
 
-    gr.ChatInterface(
+    # Normal chat interface
+    chat_interface = gr.ChatInterface(
         fn=respond_ai,
         chatbot=chatbot,
-        textbox=message_box
+        textbox=gr.Textbox(
+            placeholder="Ask me anything about Gaurav...",
+            container=False
+        ),
+        examples=[
+            "Tell me about Gaurav's professional experience.",
+            "How is Gaurav transitioning into AI engineering?",
+            "What does Gaurav enjoy outside work?"
+        ]
     )
 
+    # Clicking a card sends a detailed prompt into ChatInterface
     professional_btn.click(
         fn=lambda: (
-            "Tell me about Gaurav's career, technical skills, "
-            "professional experience, and major projects."
+            "Tell me about Gaurav's professional profile, including his "
+            "career experience, technical skills, AI projects, architecture "
+            "experience, and leadership responsibilities."
         ),
         inputs=None,
-        outputs=message_box
+        outputs=card_prompt
+    ).then(
+        fn=chat_interface.fn,
+        inputs=[card_prompt, chatbot],
+        outputs=chatbot
     )
 
     education_btn.click(
         fn=lambda: (
-            "Tell me about Gaurav's education, AI learning journey, "
-            "career transition, and future goals."
+            "Tell me about Gaurav's education, learning journey, transition "
+            "into AI engineering, AI courses, projects, and career goals."
         ),
         inputs=None,
-        outputs=message_box
+        outputs=card_prompt
+    ).then(
+        fn=chat_interface.fn,
+        inputs=[card_prompt, chatbot],
+        outputs=chatbot
     )
 
     interests_btn.click(
         fn=lambda: (
-            "Tell me about Gaurav's personal interests, sports, "
-            "community involvement, and personality."
+            "Tell me about Gaurav's personal interests, sports, hobbies, "
+            "community activities, leadership outside work, and personality."
         ),
         inputs=None,
-        outputs=message_box
+        outputs=card_prompt
+    ).then(
+        fn=chat_interface.fn,
+        inputs=[card_prompt, chatbot],
+        outputs=chatbot
     )
 
 
