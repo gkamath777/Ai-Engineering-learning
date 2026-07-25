@@ -29,7 +29,7 @@ client = OpenAI()
 document_professional_overview = """
 Professional Summary
 
-I am an AI Engineer, Lead Developer, and Software Architect with more than 18 years of experience designing and delivering enterprise software applications, Generative AI solutions, retrieval-augmented generation systems, connected-vehicle platforms, APIs, and cloud-native distributed systems.
+I am an AI Engineer, Lead Developer, and Software Architect with more than 17 years of experience designing and delivering enterprise software applications, Generative AI solutions, retrieval-augmented generation systems, connected-vehicle platforms, APIs, and cloud-native distributed systems.
 
 My current focus is on Generative AI, enterprise conversational search, and RAG-based applications. I have hands-on experience with Python, FastAPI, OpenAI APIs, large language models, embeddings, vector databases, prompt engineering, tool calling, hybrid search, response citations, AI evaluation, and conversational user interfaces.
 
