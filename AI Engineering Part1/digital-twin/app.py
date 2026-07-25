@@ -576,10 +576,101 @@ def respond_ai(message, history):
 APP_DIR = Path(__file__).resolve().parent
 AVATAR_PATH = APP_DIR / "pgk.jpeg"
 
-gr.ChatInterface(
-    fn=respond_ai,
-    title = "Gaurav's Digital Twin",
-    chatbot = gr.Chatbot(avatar_images=(None, str(AVATAR_PATH))),
-    description= "Chat with AI version of Gaurav Kamath. Ask about project, his experience and other details",
-    examples=["what's your background", "AI Engineering Experience", "Extra curricular Activities"]
-).launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7861)))
+# gr.ChatInterface(
+#     fn=respond_ai,
+#     title = "Gaurav's Digital Twin",
+#     chatbot = gr.Chatbot(avatar_images=(None, str(AVATAR_PATH))),
+#     description= "Chat with AI version of Gaurav Kamath. What would you like to explore?",
+#     examples=["Professional Profile", "Education, Learning, and Career Journey", "Personal Interests and Personality"]
+# ).launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7861)))
+
+
+with gr.Blocks() as demo:
+    gr.Markdown(
+        """
+        # Gaurav's Digital Twin
+
+        Chat with the AI version of Gaurav Kamath.  
+        Select a topic below or ask your own question.
+        """
+    )
+
+    chatbot = gr.Chatbot(
+        avatar_images=(None, str(AVATAR_PATH)),
+        height=500
+    )
+
+    message_box = gr.Textbox(
+        placeholder="Ask me anything about Gaurav...",
+        label="Your question"
+    )
+
+    with gr.Row():
+        with gr.Column():
+            gr.Markdown(
+                """
+                ### 💼 Professional Profile
+                Explore my career, technical skills, and projects.
+                """
+            )
+            professional_btn = gr.Button(
+                "Explore Professional Profile",
+                variant="primary"
+            )
+
+        with gr.Column():
+            gr.Markdown(
+                """
+                ### 🎓 Education & AI Journey
+                Learn about my education, AI development, and career goals.
+                """
+            )
+            education_btn = gr.Button("Explore Learning Journey")
+
+        with gr.Column():
+            gr.Markdown(
+                """
+                ### 🏏 Personal Interests
+                Discover my interests, sports, community activities, and personality.
+                """
+            )
+            interests_btn = gr.Button("Explore Personal Interests")
+
+    gr.ChatInterface(
+        fn=respond_ai,
+        chatbot=chatbot,
+        textbox=message_box
+    )
+
+    professional_btn.click(
+        fn=lambda: (
+            "Tell me about Gaurav's career, technical skills, "
+            "professional experience, and major projects."
+        ),
+        inputs=None,
+        outputs=message_box
+    )
+
+    education_btn.click(
+        fn=lambda: (
+            "Tell me about Gaurav's education, AI learning journey, "
+            "career transition, and future goals."
+        ),
+        inputs=None,
+        outputs=message_box
+    )
+
+    interests_btn.click(
+        fn=lambda: (
+            "Tell me about Gaurav's personal interests, sports, "
+            "community involvement, and personality."
+        ),
+        inputs=None,
+        outputs=message_box
+    )
+
+
+demo.launch(
+    server_name="0.0.0.0",
+    server_port=int(os.environ.get("PORT", 7861))
+)
