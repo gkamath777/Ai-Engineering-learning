@@ -1,0 +1,17 @@
+[
+  {
+    "task": "Parse an AWS S3 bucket name from an S3 URI string (e.g., 's3://my-bucket/path/to/object')",
+    "format": "regex",
+    "solution_criteria": "The regex should correctly extract the bucket name between 's3://' and the first '/' character, handling various valid S3 bucket naming conventions"
+  },
+  {
+    "task": "Create a JSON configuration object for an AWS Lambda function that includes runtime, handler, timeout, and memory allocation settings",
+    "format": "json",
+    "solution_criteria": "The JSON should be valid, include all four required fields with appropriate AWS Lambda-compatible values, and follow AWS CloudFormation/SDK naming conventions"
+  },
+  {
+    "task": "Write a Python function that validates an AWS IAM role ARN string and returns True if valid, False otherwise",
+    "format": "python",
+    "solution_criteria": "The function should validate the ARN format (arn:aws:iam::account-id:role/role-name), check for required components, and handle edge cases like empty strings or malformed ARNs"
+  }
+]
